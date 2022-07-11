@@ -1,1 +1,1 @@
-web: python stories/sample_generator.py && flask run --host=0.0.0.0 --port $PORT
+web: cd stories && python sample_generator.py && cd .. && flask run --host=0.0.0.0 --port $PORT
