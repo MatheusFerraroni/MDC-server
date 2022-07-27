@@ -213,7 +213,7 @@ def states_to_dialogue(states):
 
 steps_lens = []
 steps = []
-for i in range(1000):
+for i in range(20):
     flow = create(atual="A", end="X")
     steps_lens.append(len(flow))
     steps.append(flow)

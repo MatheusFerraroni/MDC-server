@@ -466,6 +466,13 @@ class StoryManager(object):
         ret['stories_data']['stories_active'] = self.cache['stories_active']
         ret['stories_data']['stories_active_writting'] = self.cache['stories_active_writting']
         ret['stories_data']['stories_completed'] = self.cache['stories_completed']
+
+        with open(self.configs.user_file, 'r') as f:
+            all_users = f.read().split("\n")
+        all_users.pop()
+        all_users = [user.split("\t") for user in all_users]
+        ret['users'] = [{"uid": user[0], "email": user[1], "name": user[2]} for user in all_users]
+
         return ret
 
     def add_turn_story(self, user, story_id, story_turn, story_text, remote_addr, user_agent):
