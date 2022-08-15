@@ -81,16 +81,16 @@ def add_user():
 @app.route("/get_story_info", methods=['POST'])
 def get_story_info():
     abort_code = 403
-    try:
-        dat = json.loads(request.data)
-        email = dat['email']
-        story_id = dat['story_id']
-        server_key = dat['server_key']
-        if not sm.validate_server_key(server_key) or sm.find_user_by_email(email)==None:
-            abort_code = 401
-            raise Exception("server_key error")
-    except Exception as e:
-        return flask.abort(abort_code) # 403 Forbidden
+    # try:
+    #     dat = json.loads(request.data)
+    #     email = dat['email']
+    #     story_id = dat['story_id']
+    #     server_key = dat['server_key']
+    #     if not sm.validate_server_key(server_key) or sm.find_user_by_email(email)==None:
+    #         abort_code = 401
+    #         raise Exception("server_key error")
+    # except Exception as e:
+    #     return flask.abort(abort_code) # 403 Forbidden
 
     story = sm.get_story(story_id)
     if type(story)==MDC.Story:
